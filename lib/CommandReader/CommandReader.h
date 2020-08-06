@@ -8,7 +8,7 @@
 class CommandReaderDelegate
 {
     public:
-    virtual void updateBaseLoop(BaseLoop *commandHandler) = 0;
+    virtual void updateBaseLoop(BaseLoop *baseLoop) = 0;
 };
 
 class CommandReader

@@ -21,7 +21,7 @@ public:
     void loop();
 
     //CommandReaderDelegate
-    void updateBaseLoop(BaseLoop *commandHandler);
+    void updateBaseLoop(BaseLoop *baseLoop);
 };
 
 #endif /* defined(__DinaMain__) */

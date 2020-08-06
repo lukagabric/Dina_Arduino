@@ -50,7 +50,7 @@ void DinaMain::loopAtFrequency()
 
 //CommandReaderDelegate
 
-void DinaMain::updateBaseLoop(BaseLoop *commandHandler)
+void DinaMain::updateBaseLoop(BaseLoop *baseLoop)
 {
-    _currentBaseLoop = commandHandler;
+    _currentBaseLoop = baseLoop;
 }
