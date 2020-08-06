@@ -1,10 +1,10 @@
 #ifndef __ThumbstickMotorLoop__
 #define __ThumbstickMotorLoop__
 
-#include "ThumbstickLoop.h"
+#include "ThumbstickBaseLoop.h"
 #include "LMotorController.h"
 
-class ThumbstickMotorLoop: public ThumbstickLoop
+class ThumbstickMotorLoop: public ThumbstickBaseLoop
 {
 private:
     LMotorController *_motorController;
@@ -14,4 +14,4 @@ public:
     void loopAtDefaultFrequency();
 };
 
-#endif /* defined(__MotorWheellBaseLoop__) */
+#endif /* defined(__ThumbstickMotorLoop__) */

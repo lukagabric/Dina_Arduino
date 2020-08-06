@@ -2,7 +2,7 @@
 #include "Constants.h"
 #include <Arduino.h>
 
-ThumbstickLEDLoop::ThumbstickLEDLoop(): ThumbstickLoop()
+ThumbstickLEDLoop::ThumbstickLEDLoop(): ThumbstickBaseLoop()
 {
     pinMode(LEFT_LED_GREEN, OUTPUT);
     pinMode(LEFT_LED_BLUE, OUTPUT);
@@ -12,10 +12,10 @@ ThumbstickLEDLoop::ThumbstickLEDLoop(): ThumbstickLoop()
 
 void ThumbstickLEDLoop::loopAtDefaultFrequency()
 {
-    ThumbstickLoop::loopAtDefaultFrequency();
+    ThumbstickBaseLoop::loopAtDefaultFrequency();
 
-    int lws = ThumbstickLoop::getLWS();
-    int rws = ThumbstickLoop::getRWS();
+    int lws = ThumbstickBaseLoop::getLWS();
+    int rws = ThumbstickBaseLoop::getRWS();
 
     if (lws >= 0)
     {

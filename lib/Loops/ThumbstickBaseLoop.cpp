@@ -1,7 +1,7 @@
-#include "ThumbstickLoop.h"
+#include "ThumbstickBaseLoop.h"
 #include "LLowPassFilter.h"
 
-ThumbstickLoop::ThumbstickLoop()
+ThumbstickBaseLoop::ThumbstickBaseLoop()
 {
     double RC = 5;
     double dt = 0.9;
@@ -9,23 +9,23 @@ ThumbstickLoop::ThumbstickLoop()
     _rwsFilter = new LLowPassFilter(RC, dt);
 }
 
-void ThumbstickLoop::setThumbstickCommand(ThumbstickCommand *command)
+void ThumbstickBaseLoop::setThumbstickCommand(ThumbstickCommand *command)
 {
     _command = command;
 }
 
-void ThumbstickLoop::loopAtDefaultFrequency()
+void ThumbstickBaseLoop::loopAtDefaultFrequency()
 {
     _lws = _lwsFilter->filterValue(_command->getLWS());
     _rws = _rwsFilter->filterValue(_command->getRWS());
 }
 
-int ThumbstickLoop::getLWS()
+int ThumbstickBaseLoop::getLWS()
 {
     return _lws;
 }
 
-int ThumbstickLoop::getRWS()
+int ThumbstickBaseLoop::getRWS()
 {
     return _rws;
 }

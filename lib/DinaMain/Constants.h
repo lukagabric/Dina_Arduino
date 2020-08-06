@@ -1,11 +1,11 @@
-#define USE_LEDS_MOCK_FOR_WHEELS 1
+#define USE_LEDS_TO_MOCK_MOTORS 1
 
 // Software Serial pins
 #define BTRX 10
 #define BTTX 11
 
 //Loop frequency
-#define FREQ_HZ 100
+#define DEFAULT_FREQUENCY_HZ 100
 
 //LED pins
 #define LEFT_LED_GREEN 3

@@ -1,11 +1,11 @@
-#ifndef __ThumbstickLoop__
-#define __ThumbstickLoop__
+#ifndef __ThumbstickBaseLoop__
+#define __ThumbstickBaseLoop__
 
 #include "BaseLoop.h"
 #include "ThumbstickCommand.h"
 class LLowPassFilter;
 
-class ThumbstickLoop: public BaseLoop
+class ThumbstickBaseLoop: public BaseLoop
 {
 private:
     ThumbstickCommand *_command;
@@ -17,9 +17,10 @@ protected:
     int getLWS();
     int getRWS();
 public:
-    ThumbstickLoop();
+    ThumbstickBaseLoop();
+    
     void setThumbstickCommand(ThumbstickCommand *command);
     void loopAtDefaultFrequency();
 };
 
-#endif /* defined(__ThumbstickLoop__) */
+#endif /* defined(__ThumbstickBaseLoop__) */

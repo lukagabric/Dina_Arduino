@@ -15,15 +15,15 @@ void DinaMain::setup()
     _serial->begin(9600);
     _serial->setTimeout(70);
 
-    ThumbstickLoop *wheelBaseLoop;
+    ThumbstickBaseLoop *thumbstickBaseLoop;
 
-    #if USE_LEDS_MOCK_FOR_WHEELS
-    wheelBaseLoop = new ThumbstickLEDLoop();
+    #if USE_LEDS_TO_MOCK_MOTORS
+    thumbstickBaseLoop = new ThumbstickLEDLoop();
     #else
-    wheelBaseLoop = new ThumbstickMotorLoop();
+    thumbstickBaseLoop = new ThumbstickMotorLoop();
     #endif
 
-    _commandReader = new CommandReader(_serial, wheelBaseLoop, this);
+    _commandReader = new CommandReader(_serial, thumbstickBaseLoop, this);
 }
 
 void DinaMain::loop() 
@@ -31,7 +31,7 @@ void DinaMain::loop()
     _commandReader->read();
 
     unsigned long currentTime = millis();
-    if (currentTime - _frequencyLoopTime >= 1000/FREQ_HZ)
+    if (currentTime - _frequencyLoopTime >= 1000/DEFAULT_FREQUENCY_HZ)
     {
         _frequencyLoopTime = currentTime;
         loopAtFrequency();

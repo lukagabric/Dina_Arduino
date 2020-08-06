@@ -1,9 +1,9 @@
 #ifndef __ThumbstickLEDLoop__
 #define __ThumbstickLEDLoop__
 
-#include "ThumbstickLoop.h"
+#include "ThumbstickBaseLoop.h"
 
-class ThumbstickLEDLoop: public ThumbstickLoop
+class ThumbstickLEDLoop: public ThumbstickBaseLoop
 {
 public:
     ThumbstickLEDLoop();
