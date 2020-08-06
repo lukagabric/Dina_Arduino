@@ -1,4 +1,4 @@
-#define USE_LEDS_MOCK_FOR_WHEELS 0
+#define USE_LEDS_MOCK_FOR_WHEELS 1
 
 // Software Serial pins
 #define BTRX 10

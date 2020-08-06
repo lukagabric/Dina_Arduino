@@ -11,8 +11,6 @@ DinaMain::DinaMain()
 
 void DinaMain::setup()
 {
-    Serial.begin(9600);
-
     _serial = new SoftwareSerial(BTRX, BTTX);
     _serial->begin(9600);
     _serial->setTimeout(70);

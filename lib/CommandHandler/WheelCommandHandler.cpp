@@ -3,8 +3,8 @@
 
 WheelCommandHandler::WheelCommandHandler()
 {
-    double RC = 1;
-    double dt = 1;
+    double RC = 5;
+    double dt = 0.9;
     _lwsFilter = new LLowPassFilter(RC, dt);
     _rwsFilter = new LLowPassFilter(RC, dt);
 }
