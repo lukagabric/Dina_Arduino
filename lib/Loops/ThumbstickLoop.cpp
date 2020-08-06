@@ -1,7 +1,7 @@
-#include "WheelCommandHandler.h"
+#include "ThumbstickLoop.h"
 #include "LLowPassFilter.h"
 
-WheelCommandHandler::WheelCommandHandler()
+ThumbstickLoop::ThumbstickLoop()
 {
     double RC = 5;
     double dt = 0.9;
@@ -9,23 +9,23 @@ WheelCommandHandler::WheelCommandHandler()
     _rwsFilter = new LLowPassFilter(RC, dt);
 }
 
-void WheelCommandHandler::setWheelCommand(WheelCommand *command)
+void ThumbstickLoop::setThumbstickCommand(ThumbstickCommand *command)
 {
     _command = command;
 }
 
-void WheelCommandHandler::handleCommandAtFrequency()
+void ThumbstickLoop::loopAtDefaultFrequency()
 {
     _lws = _lwsFilter->filterValue(_command->getLWS());
     _rws = _rwsFilter->filterValue(_command->getRWS());
 }
 
-int WheelCommandHandler::getLWS()
+int ThumbstickLoop::getLWS()
 {
     return _lws;
 }
 
-int WheelCommandHandler::getRWS()
+int ThumbstickLoop::getRWS()
 {
     return _rws;
 }

@@ -1,8 +1,8 @@
-#include "LEDWheelCommandHandler.h"
+#include "ThumbstickLEDLoop.h"
 #include "Constants.h"
 #include <Arduino.h>
 
-LEDWheelCommandHandler::LEDWheelCommandHandler(): WheelCommandHandler()
+ThumbstickLEDLoop::ThumbstickLEDLoop(): ThumbstickLoop()
 {
     pinMode(LEFT_LED_GREEN, OUTPUT);
     pinMode(LEFT_LED_BLUE, OUTPUT);
@@ -10,12 +10,12 @@ LEDWheelCommandHandler::LEDWheelCommandHandler(): WheelCommandHandler()
     pinMode(RIGHT_LED_BLUE, OUTPUT);
 }
 
-void LEDWheelCommandHandler::handleCommandAtFrequency()
+void ThumbstickLEDLoop::loopAtDefaultFrequency()
 {
-    WheelCommandHandler::handleCommandAtFrequency();
+    ThumbstickLoop::loopAtDefaultFrequency();
 
-    int lws = WheelCommandHandler::getLWS();
-    int rws = WheelCommandHandler::getRWS();
+    int lws = ThumbstickLoop::getLWS();
+    int rws = ThumbstickLoop::getRWS();
 
     if (lws >= 0)
     {

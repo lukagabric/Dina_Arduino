@@ -13,7 +13,7 @@ private:
     void loopAtFrequency();
     unsigned long _frequencyLoopTime;
 
-    CommandHandler *_currentCommandHandler;
+    BaseLoop *_currentBaseLoop;
 public:
     DinaMain();
 
@@ -21,7 +21,7 @@ public:
     void loop();
 
     //CommandReaderDelegate
-    void updateCommandHandler(CommandHandler *commandHandler);
+    void updateBaseLoop(BaseLoop *commandHandler);
 };
 
 #endif /* defined(__DinaMain__) */

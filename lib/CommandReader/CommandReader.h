@@ -2,13 +2,13 @@
 #define __CommandReader__
 
 #include "SoftwareSerial.h"
-#include "CommandHandler.h"
-#include "WheelCommandHandler.h"
+#include "BaseLoop.h"
+#include "ThumbstickLoop.h"
 
 class CommandReaderDelegate
 {
     public:
-    virtual void updateCommandHandler(CommandHandler *commandHandler) = 0;
+    virtual void updateBaseLoop(BaseLoop *commandHandler) = 0;
 };
 
 class CommandReader
@@ -16,9 +16,9 @@ class CommandReader
 private:
     SoftwareSerial *_serial;
     CommandReaderDelegate *_delegate;
-    WheelCommandHandler *_wheelCommandHandler;
+    ThumbstickLoop *_wheelBaseLoop;
 public:
-    CommandReader(SoftwareSerial *serial, WheelCommandHandler *wheelCommandHandler, CommandReaderDelegate *delegate);
+    CommandReader(SoftwareSerial *serial, ThumbstickLoop *wheelBaseLoop, CommandReaderDelegate *delegate);
 
     void read();
 };

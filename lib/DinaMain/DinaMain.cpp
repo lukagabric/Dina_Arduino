@@ -1,8 +1,8 @@
 #include "DinaMain.h"
 #include <Arduino.h>
 #include "Constants.h"
-#include "LEDWheelCommandHandler.h"
-#include "MotorWheelCommandHandler.h"
+#include "ThumbstickLEDLoop.h"
+#include "ThumbstickMotorLoop.h"
 
 DinaMain::DinaMain()
 {
@@ -15,15 +15,15 @@ void DinaMain::setup()
     _serial->begin(9600);
     _serial->setTimeout(70);
 
-    WheelCommandHandler *wheelCommandHandler;
+    ThumbstickLoop *wheelBaseLoop;
 
     #if USE_LEDS_MOCK_FOR_WHEELS
-    wheelCommandHandler = new LEDWheelCommandHandler();
+    wheelBaseLoop = new ThumbstickLEDLoop();
     #else
-    wheelCommandHandler = new MotorWheelCommandHandler();
+    wheelBaseLoop = new ThumbstickMotorLoop();
     #endif
 
-    _commandReader = new CommandReader(_serial, wheelCommandHandler, this);
+    _commandReader = new CommandReader(_serial, wheelBaseLoop, this);
 }
 
 void DinaMain::loop() 
@@ -40,17 +40,17 @@ void DinaMain::loop()
 
 void DinaMain::loopAtFrequency()
 {
-    if (_currentCommandHandler == NULL) 
+    if (_currentBaseLoop == NULL) 
     { 
         return; 
     }
 
-    _currentCommandHandler->handleCommandAtFrequency();
+    _currentBaseLoop->loopAtDefaultFrequency();
 }
 
 //CommandReaderDelegate
 
-void DinaMain::updateCommandHandler(CommandHandler *commandHandler)
+void DinaMain::updateBaseLoop(BaseLoop *commandHandler)
 {
-    _currentCommandHandler = commandHandler;
+    _currentBaseLoop = commandHandler;
 }

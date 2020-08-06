@@ -1,11 +1,11 @@
 #include <Arduino.h>
 #include "CommandReader.h"
-#include "WheelCommand.h"
+#include "ThumbstickCommand.h"
 
-CommandReader::CommandReader(SoftwareSerial *serial, WheelCommandHandler *wheelCommandHandler, CommandReaderDelegate *delegate)
+CommandReader::CommandReader(SoftwareSerial *serial, ThumbstickLoop *wheelBaseLoop, CommandReaderDelegate *delegate)
 {
     _serial = serial;
-    _wheelCommandHandler = wheelCommandHandler;
+    _wheelBaseLoop = wheelBaseLoop;
     _delegate = delegate;
 }
 
@@ -24,7 +24,7 @@ void CommandReader::read()
     int lws = map(lwsPercent, -100, 100, -255, 255);
     int rws = map(rwsPercent, -100, 100, -255, 255);
 
-    WheelCommand *command = new WheelCommand(lws, rws);
-    _wheelCommandHandler->setWheelCommand(command);
-    _delegate->updateCommandHandler(_wheelCommandHandler);
+    ThumbstickCommand *command = new ThumbstickCommand(lws, rws);
+    _wheelBaseLoop->setThumbstickCommand(command);
+    _delegate->updateBaseLoop(_wheelBaseLoop);
 }
