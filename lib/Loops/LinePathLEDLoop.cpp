@@ -1,15 +1,15 @@
-#include "ThumbstickLEDLoop.h"
+#include "LinePathLEDLoop.h"
 #include "Constants.h"
 #include <Arduino.h>
 
-ThumbstickLEDLoop::ThumbstickLEDLoop(): ThumbstickBaseLoop()
+LinePathLEDLoop::LinePathLEDLoop(): LinePathBaseLoop()
 {
     _ledMotorController = new LLEDMotorMockController(LEFT_LED_GREEN, LEFT_LED_BLUE, RIGHT_LED_GREEN, RIGHT_LED_BLUE);
 }
 
-void ThumbstickLEDLoop::loopAtDefaultFrequency()
+void LinePathLEDLoop::loopAtDefaultFrequency()
 {
-    ThumbstickBaseLoop::loopAtDefaultFrequency();
+    LinePathLEDLoop::loopAtDefaultFrequency();
 
     _ledMotorController->light(getLWS(), getRWS());
 }
