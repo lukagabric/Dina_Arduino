@@ -14,27 +14,27 @@ LLEDMotorMockController::LLEDMotorMockController(int leftGreen, int leftBlue, in
     pinMode(_rightBlue, OUTPUT);
 }
 
-void LLEDMotorMockController::light(int leftSpeed, int rightSpeed)
+void LLEDMotorMockController::actuate(int leftWheelSpeed, int rightWheelSpeed)
 {
-	if (leftSpeed >= 0)
+	if (leftWheelSpeed >= 0)
     {
-        analogWrite(_leftGreen, leftSpeed);
+        analogWrite(_leftGreen, leftWheelSpeed);
         analogWrite(_leftBlue, 0);
     } 
     else
     {
         analogWrite(_leftGreen, 0);
-        analogWrite(_leftBlue, -1*leftSpeed);
+        analogWrite(_leftBlue, -1*leftWheelSpeed);
     }
 
-    if (rightSpeed >= 0)
+    if (rightWheelSpeed >= 0)
     {
-        analogWrite(_rightGreen, rightSpeed);
+        analogWrite(_rightGreen, rightWheelSpeed);
         analogWrite(_rightBlue, 0);
     } 
     else
     {
         analogWrite(_rightGreen, 0);
-        analogWrite(_rightBlue, -1*rightSpeed);
+        analogWrite(_rightBlue, -1*rightWheelSpeed);
     }
 }

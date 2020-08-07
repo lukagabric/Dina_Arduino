@@ -2,10 +2,10 @@
 #include "CommandReader.h"
 #include "ThumbstickCommand.h"
 
-CommandReader::CommandReader(SoftwareSerial *serial, ThumbstickBaseLoop *thumbstickBaseLoop, CommandReaderDelegate *delegate)
+CommandReader::CommandReader(SoftwareSerial *serial, ThumbstickLoop *thumbstickLoop, LinePathLoop *linePathLoop, CommandReaderDelegate *delegate)
 {
     _serial = serial;
-    _thumbstickBaseLoop = thumbstickBaseLoop;
+    _thumbstickLoop = thumbstickLoop;
     _delegate = delegate;
 }
 
@@ -25,6 +25,6 @@ void CommandReader::read()
     int rws = map(rwsPercent, -100, 100, -255, 255);
 
     ThumbstickCommand *command = new ThumbstickCommand(lws, rws);
-    _thumbstickBaseLoop->setThumbstickCommand(command);
-    _delegate->updateBaseLoop(_thumbstickBaseLoop);
+    _thumbstickLoop->setThumbstickCommand(command);
+    _delegate->updateBaseLoop(_thumbstickLoop);
 }

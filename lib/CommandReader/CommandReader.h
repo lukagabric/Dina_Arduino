@@ -3,7 +3,8 @@
 
 #include "SoftwareSerial.h"
 #include "BaseLoop.h"
-#include "ThumbstickBaseLoop.h"
+#include "ThumbstickLoop.h"
+#include "LinePathLoop.h"
 
 class CommandReaderDelegate
 {
@@ -16,9 +17,10 @@ class CommandReader
 private:
     SoftwareSerial *_serial;
     CommandReaderDelegate *_delegate;
-    ThumbstickBaseLoop *_thumbstickBaseLoop;
+    ThumbstickLoop *_thumbstickLoop;
+    LinePathLoop *linePathLoop;
 public:
-    CommandReader(SoftwareSerial *serial, ThumbstickBaseLoop *thumbstickBaseLoop, CommandReaderDelegate *delegate);
+    CommandReader(SoftwareSerial *serial, ThumbstickLoop *thumbstickLoop, LinePathLoop *linePathLoop, CommandReaderDelegate *delegate);
 
     void read();
 };

@@ -2,10 +2,10 @@
 #define LMotorController_h
 
 
-#include "Arduino.h"
+#include "Actuator.h"
 
 
-class LMotorController
+class LMotorController: public Actuator
 {
 protected:
     int _ena, _in1, _in2, _enb, _in3, _in4;
@@ -20,6 +20,9 @@ public:
     void turnLeft(int speed, bool kick);
     void turnRight(int speed, bool kick);
     void stopMoving();
+
+    //Actuator
+    void actuate(int leftWheelSpeed, int rightWheelSpeed);
 };
 
 

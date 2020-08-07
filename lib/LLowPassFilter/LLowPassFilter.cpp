@@ -1,6 +1,8 @@
 #include "LLowPassFilter.h"
 
-LLowPassFilter::LLowPassFilter(double RC, double dt) {
+LLowPassFilter::LLowPassFilter(double RC, double dt, double minValue, double maxValue) {
+    _minValue = minValue;
+    _maxValue = maxValue;
     _RC = RC;
     _dt = dt;
     updateAlpha();
@@ -22,6 +24,26 @@ void LLowPassFilter::setDt(double dt) {
 
 double LLowPassFilter::dt() {
     return _dt;
+}
+
+void LLowPassFilter::setMinValue(double minValue)
+{
+    _minValue = minValue;
+}
+
+double LLowPassFilter::getMinValue()
+{
+    return _minValue;
+}
+
+void LLowPassFilter::setMaxValue(double maxValue)
+{
+    _maxValue = maxValue;
+}
+
+double LLowPassFilter::getMaxValue()
+{
+    return _maxValue;
 }
 
 double LLowPassFilter::alpha() {

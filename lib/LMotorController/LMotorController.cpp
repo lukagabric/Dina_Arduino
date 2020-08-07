@@ -166,3 +166,9 @@ void LMotorController::stopMoving()
     
     _currentSpeed = 0;
 }
+
+//Actuator
+void LMotorController::actuate(int leftWheelSpeed, int rightWheelSpeed)
+{
+    moveRaw(leftWheelSpeed, rightWheelSpeed);
+}

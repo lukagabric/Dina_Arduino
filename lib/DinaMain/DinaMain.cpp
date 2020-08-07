@@ -1,8 +1,10 @@
 #include "DinaMain.h"
 #include <Arduino.h>
 #include "Constants.h"
-#include "ThumbstickLEDLoop.h"
-#include "ThumbstickMotorLoop.h"
+#include "ThumbstickLoop.h"
+#include "LinePathLoop.h"
+#include "LLEDMotorMockController.h"
+#include "LMotorController.h"
 
 DinaMain::DinaMain()
 {
@@ -15,15 +17,18 @@ void DinaMain::setup()
     _serial->begin(9600);
     _serial->setTimeout(70);
 
-    ThumbstickBaseLoop *thumbstickBaseLoop;
+    Actuator *actuator;
 
     #if USE_LEDS_TO_MOCK_MOTORS
-    thumbstickBaseLoop = new ThumbstickLEDLoop();
+    actuator = new LLEDMotorMockController(LEFT_LED_GREEN, LEFT_LED_BLUE, RIGHT_LED_GREEN, RIGHT_LED_BLUE);
     #else
-    thumbstickBaseLoop = new ThumbstickMotorLoop();
+    actuator = new LMotorController(ENA, IN1, IN2, ENB, IN3, IN4, AConst, BConst);    
     #endif
 
-    _commandReader = new CommandReader(_serial, thumbstickBaseLoop, this);
+    ThumbstickLoop *thumbstickLoop = new ThumbstickLoop(actuator);
+    LinePathLoop *linePathLoop = new LinePathLoop(actuator);
+
+    _commandReader = new CommandReader(_serial, thumbstickLoop, linePathLoop, this);
 }
 
 void DinaMain::loop() 

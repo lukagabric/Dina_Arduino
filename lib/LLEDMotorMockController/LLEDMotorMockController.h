@@ -1,9 +1,10 @@
 #ifndef __LLEDMotorMockController__
 #define __LLEDMotorMockController__
 
+#include "Actuator.h"
 #include "Arduino.h"
 
-class LLEDMotorMockController
+class LLEDMotorMockController: public Actuator
 {
 protected:
     int _leftGreen;
@@ -13,7 +14,8 @@ protected:
 public:
     LLEDMotorMockController(int leftGreen, int leftBlue, int rightGreen, int rightBlue);
 
-    void light(int leftSpeed, int rightSpeed);
+    //Actuator
+    void actuate(int leftWheelSpeed, int rightWheelSpeed);
 };
 
 

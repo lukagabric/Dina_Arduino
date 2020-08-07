@@ -1,26 +1,25 @@
-#ifndef __LinePathBaseLoop__
-#define __LinePathBaseLoop__
+#ifndef __LinePathLoop__
+#define __LinePathLoop__
 
 #include "BaseLoop.h"
 #include "LinePathCommand.h"
+class Actuator;
 class LLowPassFilter;
 
-class LinePathBaseLoop: public BaseLoop
+class LinePathLoop: public BaseLoop
 {
 private:
     LinePathCommand *_command;
+    Actuator *_actuator;
     LLowPassFilter *_lwsFilter;
     LLowPassFilter *_rwsFilter;
     int _lws;
     int _rws;
-protected:
-    int getLWS();
-    int getRWS();
 public:
-    LinePathBaseLoop();
+    LinePathLoop(Actuator *actuator);
     
     void setLinePathCommand(LinePathCommand *command);
     void loopAtDefaultFrequency();
 };
 
-#endif /* defined(__LinePathBaseLoop__) */
+#endif /* defined(__LinePathLoop__) */

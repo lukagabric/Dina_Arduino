@@ -11,16 +11,21 @@
 class LLowPassFilter
 {
 private:
-    double _alpha, _dt, _RC, _currentFilteredValue, _currentRawValue;
+    double _alpha, _dt, _RC, _currentFilteredValue, _currentRawValue, _minValue, _maxValue;
     void updateAlpha();
 public:
-    LLowPassFilter(double RC, double dt);
+    LLowPassFilter(double RC, double dt, double minValue, double maxValue);
     
     void setRC(double RC);
     double RC();
     void setDt(double dt);
     double dt();
     double alpha();
+
+    void setMinValue(double minValue);
+    double getMinValue();
+    void setMaxValue(double maxValue);
+    double getMaxValue();
     
     double filterValue(double rawValue);
     double currentFilteredValue();
