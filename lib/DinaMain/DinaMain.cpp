@@ -26,7 +26,7 @@ void DinaMain::setup()
     #endif
 
     ThumbstickLoop *thumbstickLoop = new ThumbstickLoop(actuator);
-    LinePathLoop *linePathLoop = new LinePathLoop(actuator);
+    LinePathLoop *linePathLoop = new LinePathLoop(actuator, DEFAULT_FREQUENCY_HZ, LINE_PATH_MOTION_DURATION);
 
     _commandReader = new CommandReader(_serial, thumbstickLoop, linePathLoop, this);
 }

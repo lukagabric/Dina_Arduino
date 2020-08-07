@@ -1,15 +1,17 @@
 #include "LinePathLoop.h"
 #include "LLowPassFilter.h"
 #include "Actuator.h"
+#include <Arduino.h>
 
-LinePathLoop::LinePathLoop(Actuator *actuator)
+LinePathLoop::LinePathLoop(Actuator *actuator, double fHz, unsigned long directionInterval)
 {
+    _lws = _rws = 0;
     _actuator = actuator;
-
-    double RC = 5;
-    double dt = 0.9;
-    _lwsFilter = new LLowPassFilter(RC, dt, -255, 255);
-    _rwsFilter = new LLowPassFilter(RC, dt, -255, 255);
+    _fHz = fHz;
+    _direction = MoveDirectionForward;
+    _speedIncrement = 1;
+    _directionInterval = directionInterval;
+    _moveTime = millis();
 }
 
 void LinePathLoop::setLinePathCommand(LinePathCommand *command)
@@ -19,8 +21,35 @@ void LinePathLoop::setLinePathCommand(LinePathCommand *command)
 
 void LinePathLoop::loopAtDefaultFrequency()
 {
-    _lws = _lwsFilter->filterValue(_command->getLWS());
-    _rws = _rwsFilter->filterValue(_command->getRWS());
+    unsigned long currentTime = millis();
+    if (currentTime - _moveTime > _directionInterval)
+    {
+        _direction = _direction == MoveDirectionForward ? MoveDirectionBackward : MoveDirectionForward;
+        _moveTime = currentTime;
+    }
+
+    if (_direction == MoveDirectionForward)
+    {        
+        if (_lws <= 255)
+        {
+            _lws = _rws = _lws + _speedIncrement;
+            if (_lws > 255)
+            {
+                _lws = _rws = 255;
+            }
+        }
+    }
+    else
+    {
+        if (_lws >= -255)
+        {
+            _lws = _rws = _lws - _speedIncrement;
+            if (_lws < -255)
+            {
+                _lws = _rws = -255;
+            }
+        }
+    }
 
     _actuator->actuate(_lws, _rws);
 }
