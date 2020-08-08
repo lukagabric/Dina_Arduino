@@ -9,14 +9,16 @@ LinePathLoop::LinePathLoop(Actuator *actuator, double fHz, unsigned long directi
     _actuator = actuator;
     _fHz = fHz;
     _direction = MoveDirectionForward;
-    _speedIncrement = 1;
+    _speedIncrement = 1.1;
     _directionInterval = directionInterval;
     _moveTime = millis();
 }
 
-void LinePathLoop::setLinePathCommand(LinePathCommand *command)
+void LinePathLoop::resetLoop()
 {
-    _command = command;
+    _lws = _rws = 0;
+    _moveTime = millis();
+    _direction = MoveDirectionForward;
 }
 
 void LinePathLoop::loopAtDefaultFrequency()

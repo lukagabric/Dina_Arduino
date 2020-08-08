@@ -18,7 +18,7 @@ private:
     SoftwareSerial *_serial;
     CommandReaderDelegate *_delegate;
     ThumbstickLoop *_thumbstickLoop;
-    LinePathLoop *linePathLoop;
+    LinePathLoop *_linePathLoop;
 public:
     CommandReader(SoftwareSerial *serial, ThumbstickLoop *thumbstickLoop, LinePathLoop *linePathLoop, CommandReaderDelegate *delegate);
 

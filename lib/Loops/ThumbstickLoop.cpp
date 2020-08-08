@@ -10,6 +10,8 @@ ThumbstickLoop::ThumbstickLoop(Actuator *actuator)
     double dt = 0.9;
     _lwsFilter = new LLowPassFilter(RC, dt, -255, 255);
     _rwsFilter = new LLowPassFilter(RC, dt, -255, 255);
+
+    _lws = _rws = 0;
 }
 
 void ThumbstickLoop::setThumbstickCommand(ThumbstickCommand *command)

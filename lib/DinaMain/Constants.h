@@ -26,4 +26,4 @@
 #define BConst 1
 
 //Line Path
-#define LINE_PATH_MOTION_DURATION 7000
+#define LINE_PATH_MOTION_DURATION 10000
