@@ -13,6 +13,8 @@ private:
     LLowPassFilter *_rwsFilter;
     int _lws;
     int _rws;
+    int _rawLWS;
+    int _rawRWS;
 public:
     ThumbstickLoop(Actuator *actuator);
     
