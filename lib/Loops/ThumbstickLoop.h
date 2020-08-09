@@ -2,14 +2,12 @@
 #define __ThumbstickLoop__
 
 #include "BaseLoop.h"
-#include "ThumbstickCommand.h"
 class Actuator;
 class LLowPassFilter;
 
 class ThumbstickLoop: public BaseLoop
 {
 private:
-    ThumbstickCommand *_command;
     Actuator *_actuator;
     LLowPassFilter *_lwsFilter;
     LLowPassFilter *_rwsFilter;
@@ -18,7 +16,7 @@ private:
 public:
     ThumbstickLoop(Actuator *actuator);
     
-    void setThumbstickCommand(ThumbstickCommand *command);
+    void setSpeeds(int lws, int rws);
     void loopAtDefaultFrequency();
 };
 

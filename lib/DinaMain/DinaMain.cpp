@@ -15,7 +15,7 @@ void DinaMain::setup()
 {
     _serial = new SoftwareSerial(BTRX, BTTX);
     _serial->begin(9600);
-    _serial->setTimeout(70);
+    _serial->setTimeout(10);
 
     Actuator *actuator;
 

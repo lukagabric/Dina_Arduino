@@ -1,6 +1,7 @@
 #include "ThumbstickLoop.h"
 #include "LLowPassFilter.h"
 #include "Actuator.h"
+#include <Arduino.h>
 
 ThumbstickLoop::ThumbstickLoop(Actuator *actuator)
 {
@@ -14,15 +15,14 @@ ThumbstickLoop::ThumbstickLoop(Actuator *actuator)
     _lws = _rws = 0;
 }
 
-void ThumbstickLoop::setThumbstickCommand(ThumbstickCommand *command)
+void ThumbstickLoop::setSpeeds(int lws, int rws)
 {
-    _command = command;
+    _lws = lws;
+    _rws = rws;
 }
 
 void ThumbstickLoop::loopAtDefaultFrequency()
 {
-    _lws = _lwsFilter->filterValue(_command->getLWS());
-    _rws = _rwsFilter->filterValue(_command->getRWS());
 
     _actuator->actuate(_lws, _rws);
 }
