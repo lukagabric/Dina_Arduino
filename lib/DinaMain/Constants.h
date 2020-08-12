@@ -1,4 +1,4 @@
-#define USE_LEDS_TO_MOCK_MOTORS 1
+#define USE_LEDS_TO_MOCK_MOTORS 0
 
 // Software Serial pins
 #define BTRX 10
