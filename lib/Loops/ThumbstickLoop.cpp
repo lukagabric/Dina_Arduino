@@ -23,8 +23,8 @@ void ThumbstickLoop::setSpeeds(int lws, int rws)
 
 void ThumbstickLoop::loopAtDefaultFrequency()
 {
-    _lws = _lwsFilter->filterValue(_rawLWS);
-    _rws = _rwsFilter->filterValue(_rawRWS);
+    _lws = round(_lwsFilter->filterValue(_rawLWS));
+    _rws = round(_rwsFilter->filterValue(_rawRWS));
     
     _actuator->actuate(_lws, _rws);
 }
