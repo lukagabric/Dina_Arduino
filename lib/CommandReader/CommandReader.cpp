@@ -30,14 +30,14 @@ void CommandReader::read()
             return;
         }
 
-        String lwsPercentString = inputString.substring(firstCommaIndex + 1, secondCommaIndex);
-        String rwsPercentString = inputString.substring(secondCommaIndex + 1, thirdCommaIndex);
+        String rwsPercentString = inputString.substring(firstCommaIndex + 1, secondCommaIndex);
+        String lwsPercentString = inputString.substring(secondCommaIndex + 1, thirdCommaIndex);
 
-        int lwsPercent = lwsPercentString.toInt();
         int rwsPercent = rwsPercentString.toInt();
+        int lwsPercent = lwsPercentString.toInt();
 
-        int lws = map(lwsPercent, -100, 100, -255, 255);
         int rws = map(rwsPercent, -100, 100, -255, 255);
+        int lws = map(lwsPercent, -100, 100, -255, 255);
 
         _thumbstickLoop->setSpeeds(lws, rws);
         loop = _thumbstickLoop;
